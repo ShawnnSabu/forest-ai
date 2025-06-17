@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Play, Leaf, Music, MessageCircle, Users, Volume2, VolumeX, Sun, Moon, Trees } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { useChat } from "@/contexts/ChatContext";
 
 const Hero = () => {
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark' | 'forest'>('forest');
+  const { openChatModal } = useChat();
 
   useEffect(() => {
     // Apply theme changes to the document
@@ -116,9 +118,7 @@ const Hero = () => {
   const styles = getThemeStyles();
 
   const handleMeetPebble = () => {
-    // Trigger the Relevance AI chatbot using the same approach as the bottom right icon
-    const chatEvent = new CustomEvent('relevanceai:open-chat');
-    window.dispatchEvent(chatEvent);
+    openChatModal();
   };
 
   return (

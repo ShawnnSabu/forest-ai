@@ -1,16 +1,15 @@
-
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useChat } from "@/contexts/ChatContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openChatModal } = useChat();
 
   const handleMeetPebble = () => {
-    // Trigger the Relevance AI chatbot using the same approach as the bottom right icon
-    const chatEvent = new CustomEvent('relevanceai:open-chat');
-    window.dispatchEvent(chatEvent);
+    openChatModal();
   };
 
   return (
